@@ -2,7 +2,7 @@ name := "FpForMortals"
 
 version := "0.1"
 
-scalaVersion := "2.13.2"
+scalaVersion := "2.13.1"
 
 scalacOptions in ThisBuild ++= Seq(
   "-language:_",
@@ -10,8 +10,10 @@ scalacOptions in ThisBuild ++= Seq(
   "-Ymacro-annotations"
 )
 libraryDependencies ++= Seq(
-  "org.typelevel"        %% "simulacrum" % "1.0.0",
-  "org.typelevel"        %% "cats-core" % "2.1.1"
+  "org.typelevel"        %% "simulacrum"   % "1.0.0",
+  "org.typelevel"        %% "cats-core"    % "2.1.1",
+  "org.typelevel"        %% "mouse"        % "0.24",
+  "eu.timepit"           %% "refined-cats" % "0.9.14"
 )
 
 addCompilerPlugin("org.typelevel" %% "kind-projector" % "0.11.0" cross CrossVersion.full)
