@@ -29,3 +29,24 @@ is equivalent to
 ```
 
 This is known as _curring_.
+
+# Prefer Coproduct over Product
+
+An archetypal modelling problem that comes up a lot is when there are mutually exclusive configuration parameters
+a, b and c. 
+
+The product `(a: Boolean, b: Boolean, c: Boolean)` has complexity 8 whereas the coproduct
+
+```
+ sealed abstract class Config
+  object Config {
+    case object A extends Config
+    case object B extends Config
+    case object C extends Config
+}
+```
+has a complexity of 3.
+
+It is better to model these configuration parameters as a coproduct rather than allowing 5 invalid states to exist.
+
+ If a random sample of a data type has a low probability of being valid, it is a sign that the data is modelled incorrectly.
