@@ -1,7 +1,4 @@
-import cats._
-import cats.data._
 import cats.implicits._
-import simulacrum._
 
 /* Appendable things
 

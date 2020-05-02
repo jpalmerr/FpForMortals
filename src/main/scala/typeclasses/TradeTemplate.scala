@@ -58,4 +58,6 @@ object Example extends App {
   println(templates.foldLeft(zero)(_ |+| _))
   // TradeTemplate(List(2019-05-02, 2020-05-02, 2020-08-03),Some(USD),Some(false))
 
+  println(templates.combineAll)
+  // TradeTemplate(List(2019-05-02, 2020-05-02, 2020-08-03),Some(USD),Some(false))
 }
