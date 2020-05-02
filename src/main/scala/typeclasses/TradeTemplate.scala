@@ -2,6 +2,7 @@ package typeclasses
 
 import cats._
 import cats.implicits._
+import typeclasses.TradeTemplate.zero
 
 
 sealed abstract class Currency
@@ -38,6 +39,10 @@ object TradeTemplate {
   implicit val monoidCcy: Monoid[Option[Currency]] = lastWins
   implicit val monoidOtc: Monoid[Option[Boolean]] = lastWins
 
+}
+
+object Example extends App {
+
   // now try it out
 
   import java.time.{LocalDate => LD}
@@ -45,11 +50,12 @@ object TradeTemplate {
   val templates = List(
     TradeTemplate(Nil, None, None),
     TradeTemplate(Nil, Some(EUR), None),
-    TradeTemplate(List(LD.of(2017, 8, 5)), Some(USD), None),
-    TradeTemplate(List(LD.of(2017, 8, 5)), None, Some(true)),
-    TradeTemplate(List(LD.of(2017, 8, 5)), None, Some(false)),
+    TradeTemplate(List(LD.of(2019, 5, 2)), Some(USD), None),
+    TradeTemplate(List(LD.of(2020, 5, 2)), None, Some(true)),
+    TradeTemplate(List(LD.of(2020, 8, 3)), None, Some(false)),
   )
 
-  templates.foldLeft(zero)(_ |+| _)
+  println(templates.foldLeft(zero)(_ |+| _))
+  // TradeTemplate(List(2019-05-02, 2020-05-02, 2020-08-03),Some(USD),Some(false))
 
 }
