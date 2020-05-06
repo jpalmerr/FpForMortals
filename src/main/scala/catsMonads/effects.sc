@@ -35,3 +35,13 @@ def stars[F[_]: Monad: Twitter](name: String): OptionT[F, Int] = for {
 An optional value is a special case of a value that may be an error,
 where we don’t know anything about the error.
  */
+
+/*
+EitherT allows us to use any type we want as the error value,
+providing contextual information about what went wrong.
+ */
+
+def starsWithError[F[_]: Monad: Twitter](name: String): EitherT[F, String, Int] = for {
+  user  <- EitherT.fromOptionF(T.getUser(name), s"user '$name' not found")
+  stars <- EitherT.right(T.getStars(user))
+} yield stars
